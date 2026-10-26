@@ -10,188 +10,295 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Mulish:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Mulish:wght@400;600;700&display=swap">
 <style>
-/* Layout: deep-water hero with the logo, then light sections; blue carries the page, red marks the "hands" moments (times, calls to action). */
+/* Layout: the page flows like water. A living hero (rising bubbles, moving waves, a droplet holding the logo)
+   pours into light sections joined by wave edges; a deep "night water" band holds prayer. Red = the hands: times and actions. */
 :root {
   --sky: #2f9bd8;
   --water: #0b6aad;
   --deep: #0c3f66;
+  --abyss: #072a45;
   --hands: #a3212a;
   --hands-ink: #ffffff;
-  --bg: #f6f9fc;
+  --bg: #f4f8fc;
   --surface: #ffffff;
   --fg: #12263a;
   --muted: #4d6378;
   --line: #d7e3ee;
-  --tint: #e8f2fa;
-  --hero-fg: #ffffff;
+  --tint: #e6f1fa;
+  --foam: #ffffff;
   --f-display: "Josefin Sans", "Futura", "Century Gothic", system-ui, sans-serif;
   --f-body: "Mulish", "Segoe UI", system-ui, sans-serif;
   --f-quote: "Lora", Georgia, serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --sky: #5cb6ea; --water: #3d93d4; --deep: #082c48; --hands: #d2444d;
+    --sky: #5cb6ea; --water: #3d93d4; --deep: #0a3352; --abyss: #041726; --hands: #d2444d;
     --bg: #071a2b; --surface: #0d2539; --fg: #e6eff7; --muted: #9db3c7;
     --line: #1d3a54; --tint: #10304b; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --sky: #5cb6ea; --water: #3d93d4; --deep: #082c48; --hands: #d2444d;
+  --sky: #5cb6ea; --water: #3d93d4; --deep: #0a3352; --abyss: #041726; --hands: #d2444d;
   --bg: #071a2b; --surface: #0d2539; --fg: #e6eff7; --muted: #9db3c7;
   --line: #1d3a54; --tint: #10304b; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
-body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 17px; line-height: 1.6; }
-h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.1; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 17px; line-height: 1.6; overflow-x: hidden; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.08; }
 p { margin: 0; }
 a { color: inherit; }
-:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; border-radius: 6px; }
+section[id], .hero { scroll-margin-top: 70px; }
 
-.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font: 600 13px var(--f-display); letter-spacing: .2em; text-transform: uppercase; }
 
 /* Header */
-body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--deep); }
-header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: color-mix(in srgb, var(--deep) 94%, transparent); backdrop-filter: blur(8px); color: var(--hero-fg); }
-header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--f-display); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: 15px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--abyss); }
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: color-mix(in srgb, var(--abyss) 88%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #fff; }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 10px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--f-display); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: 15px; }
 .brand img { width: 38px; height: 38px; border-radius: 50%; background: #fff; padding: 2px; }
-nav.links { display: flex; gap: 22px; font-size: 15px; }
-nav.links a { text-decoration: none; opacity: .85; }
-nav.links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
-.lang { display: inline-flex; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: 3px; flex-shrink: 0; }
-.lang button { font: 700 13px var(--f-display); letter-spacing: .08em; color: var(--hero-fg); background: transparent; border: 0; border-radius: 999px; padding: 6px 12px 4px; cursor: pointer; }
+nav.links { display: flex; gap: 24px; font: 600 14px var(--f-display); letter-spacing: .1em; text-transform: uppercase; }
+nav.links a { text-decoration: none; opacity: .78; padding-block: 6px; border-bottom: 2px solid transparent; }
+nav.links a:hover { opacity: 1; border-bottom-color: var(--sky); }
+.lang { display: inline-flex; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; padding: 3px; flex-shrink: 0; }
+.lang button { font: 700 13px var(--f-display); letter-spacing: .08em; color: #fff; background: transparent; border: 0; border-radius: 999px; padding: 6px 12px 4px; cursor: pointer; }
 .lang button[aria-pressed="true"] { background: #fff; color: var(--deep); }
 
 /* Hero */
-.hero { position: relative; overflow: hidden; color: var(--hero-fg); background: linear-gradient(170deg, var(--sky) 0%, var(--water) 42%, var(--deep) 100%); }
-.hero::after { content: ""; position: absolute; left: -10%; right: -10%; bottom: -1px; height: 70px; background: var(--bg); border-radius: 50% 50% 0 0 / 100% 100% 0 0; }
-.hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: center; padding-block: 64px 120px; }
-.eyebrow { font: 600 13px var(--f-display); letter-spacing: .18em; text-transform: uppercase; opacity: .85; }
-.hero h1 { font-size: clamp(40px, 6.4vw, 72px); font-weight: 700; letter-spacing: .01em; margin-top: 14px; text-transform: uppercase; }
-.hero h1 span { display: block; font-weight: 400; font-size: .48em; letter-spacing: .2em; margin-bottom: 6px; }
-.hero .lede { font-family: var(--f-quote); font-size: 20px; max-width: 34ch; margin-top: 20px; opacity: .95; }
-.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-.btn { display: inline-flex; align-items: center; gap: 8px; font: 700 15px var(--f-display); letter-spacing: .08em; text-transform: uppercase; text-decoration: none; padding: 15px 22px 12px; border-radius: 999px; border: 2px solid transparent; cursor: pointer; }
-.btn-red { background: var(--hands); color: var(--hands-ink); }
+.hero { position: relative; overflow: hidden; color: #fff; background:
+  radial-gradient(120% 70% at 75% 0%, rgba(120, 200, 245, .55), transparent 60%),
+  linear-gradient(180deg, #2b93d1 0%, #0b6aad 38%, #0c3f66 78%, #072a45 100%); }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.rays { position: absolute; inset: -20% 0 auto 30%; height: 120%; background: repeating-linear-gradient(100deg, rgba(255,255,255,.07) 0 40px, transparent 40px 110px); filter: blur(14px); transform-origin: top; pointer-events: none; mask-image: linear-gradient(180deg, #000, transparent 75%); -webkit-mask-image: linear-gradient(180deg, #000, transparent 75%); }
+.hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.25fr .75fr; gap: 40px; align-items: center; padding-block: 56px 150px; }
+.hero .eyebrow { color: #cfe9fa; }
+.hero h1 { margin-top: 14px; text-transform: uppercase; }
+.hero h1 .small { display: block; font-weight: 300; font-size: clamp(20px, 2.6vw, 30px); letter-spacing: .42em; margin-bottom: 8px; }
+.hero h1 .big { display: block; font-weight: 700; font-size: clamp(50px, 8.6vw, 104px); letter-spacing: -.005em; line-height: .92;
+  background: linear-gradient(180deg, #ffffff 30%, #bfe4fb 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .lede { font-family: var(--f-quote); font-size: clamp(18px, 2vw, 21px); max-width: 36ch; margin-top: 22px; color: #e3f2fc; }
+
+.next { margin-top: 26px; display: inline-flex; align-items: center; gap: 14px; padding: 12px 18px 10px 12px; border-radius: 999px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.28); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); max-width: 100%; }
+.next .pulse { width: 12px; height: 12px; border-radius: 50%; background: #ff6b72; flex-shrink: 0; margin-left: 6px; box-shadow: 0 0 0 0 rgba(255, 107, 114, .6); }
+.next .txt { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+.next .lbl { font: 600 11px var(--f-display); letter-spacing: .18em; text-transform: uppercase; color: #cfe9fa; }
+.next .val { font: 700 17px var(--f-display); letter-spacing: .03em; padding-top: 2px; }
+.next .val em { font-style: normal; color: #ffd0d3; font-weight: 600; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: 700 15px var(--f-display); letter-spacing: .08em; text-transform: uppercase; text-decoration: none; padding: 15px 24px 12px; border-radius: 999px; border: 2px solid transparent; cursor: pointer; transition: transform .15s, filter .15s, background .15s; }
+.btn:hover { transform: translateY(-1px); }
+.btn-red { background: var(--hands); color: var(--hands-ink); box-shadow: 0 10px 24px rgba(163, 33, 42, .35); }
 .btn-red:hover { filter: brightness(1.08); }
-.btn-ghost { border-color: rgba(255,255,255,.6); color: #fff; }
+.btn-ghost { border-color: rgba(255,255,255,.55); color: #fff; }
 .btn-ghost:hover { background: rgba(255,255,255,.12); }
-.logo-tile { justify-self: center; width: min(340px, 100%); aspect-ratio: 1; max-width: 100%; background: #fff; border-radius: 50% 50% 50% 50% / 58% 58% 42% 42%; display: grid; place-items: center; overflow: hidden; box-shadow: 0 30px 60px rgba(4, 30, 52, .35); }
-.logo-tile img { width: 86%; }
+
+.drop-wrap { justify-self: center; position: relative; width: min(330px, 100%); aspect-ratio: 1; max-width: 100%; display: grid; place-items: center; }
+.drop-wrap::before, .drop-wrap::after { content: ""; position: absolute; left: 50%; top: 58%; width: 120%; aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(255,255,255,.22); transform: translate(-50%, -50%) scale(.6); opacity: 0; }
+.drop { width: 76%; aspect-ratio: 1; background: #fff; border-radius: 0 50% 50% 50%; transform: rotate(45deg); overflow: hidden; display: grid; place-items: center; box-shadow: 0 40px 70px rgba(2, 20, 36, .45), inset 0 -10px 30px rgba(11, 106, 173, .12); margin-top: 18%; }
+.drop img { width: 88%; max-width: none; transform: rotate(-45deg) translateY(2%); }
+
+.waves { position: absolute; left: 0; right: 0; bottom: -1px; height: 110px; pointer-events: none; }
+.waves svg { position: absolute; bottom: 0; width: 200%; height: 100%; left: 0; }
+.waves .w1 { fill: var(--bg); opacity: .35; }
+.waves .w2 { fill: var(--bg); opacity: .6; }
+.waves .w3 { fill: var(--bg); }
+
+/* Week strip */
+.week { position: relative; z-index: 2; margin-top: -70px; }
+.week-card { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 20px 22px; box-shadow: 0 24px 50px rgba(12, 63, 102, .12); display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; }
+.week-card .eyebrow { color: var(--water); }
+.week-title { font: 700 20px var(--f-display); margin-top: 4px; }
+.days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.day { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 4px 8px; border-radius: 14px; font: 700 14px var(--f-display); letter-spacing: .08em; color: var(--muted); border: 2px solid transparent; min-width: 0; }
+.day .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+.day .t { font: 600 11px var(--f-display); letter-spacing: .04em; white-space: nowrap; min-height: 1em; }
+.day.svc { background: var(--tint); color: var(--fg); }
+.day.svc .dot { background: var(--hands); }
+.day.svc .t { color: var(--hands); }
+.day.today { border-color: var(--sky); }
 
 /* Sections */
-section { padding-block: 72px; }
-.section-head { max-width: 640px; margin-bottom: 36px; }
-.section-head .eyebrow { color: var(--hands); opacity: 1; }
-.section-head h2 { font-size: clamp(30px, 4vw, 42px); margin-top: 10px; color: var(--fg); }
-.section-head p { color: var(--muted); margin-top: 12px; }
+section { padding-block: 84px; position: relative; }
+.section-head { max-width: 660px; margin-bottom: 40px; }
+.section-head .eyebrow { color: var(--hands); }
+.section-head h2 { font-size: clamp(32px, 4.4vw, 48px); margin-top: 10px; color: var(--fg); }
+.section-head p { color: var(--muted); margin-top: 12px; font-size: 18px; }
+.edge { position: absolute; left: 0; right: 0; height: 60px; pointer-events: none; }
+.edge svg { width: 100%; height: 100%; display: block; }
+.edge.top { top: -59px; }
+.edge.bottom { bottom: -59px; transform: scaleY(-1); }
 
 /* Schedule */
 .schedule { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.service { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-.service .day { font: 700 13px var(--f-display); letter-spacing: .16em; text-transform: uppercase; color: var(--water); }
-.service .time { font: 700 46px/1 var(--f-display); color: var(--hands); font-variant-numeric: tabular-nums; }
-.service .time small { font-size: 18px; letter-spacing: .08em; margin-left: 4px; }
-.service h3 { font-size: 22px; }
+.service { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 12px; min-width: 0; transition: transform .2s, box-shadow .2s; }
+.service:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(12, 63, 102, .12); }
+.service::after { content: ""; position: absolute; right: -40px; top: -40px; width: 140px; height: 140px; border-radius: 0 50% 50% 50%; transform: rotate(45deg); background: var(--tint); z-index: 0; }
+.service > * { position: relative; z-index: 1; }
+.service .day-name { font: 700 13px var(--f-display); letter-spacing: .18em; text-transform: uppercase; color: var(--water); }
+.service .time { font: 700 56px/1 var(--f-display); color: var(--hands); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.service .time small { font-size: 18px; letter-spacing: .1em; margin-left: 6px; }
+.service h3 { font-size: 23px; }
 .service p { color: var(--muted); font-size: 16px; }
-.service.kids { background: var(--tint); border-color: transparent; }
-.service.kids .time { font-size: 30px; line-height: 1.15; }
+.service.kids { background: linear-gradient(160deg, #3aa6e0, #0b6aad); border-color: transparent; color: #fff; }
+.service.kids::after { background: rgba(255,255,255,.14); }
+.service.kids .day-name { color: #d6eefc; }
+.service.kids .time { color: #fff; font-size: 34px; line-height: 1.05; }
+.service.kids p { color: #e3f2fc; }
+.kids-art { display: flex; gap: 8px; margin-top: auto; padding-top: 6px; }
+.kids-art span { width: 30px; height: 30px; border-radius: 0 50% 50% 50%; transform: rotate(45deg); background: rgba(255,255,255,.85); }
+.kids-art span:nth-child(2) { background: #ffd0d3; width: 22px; height: 22px; align-self: end; }
+.kids-art span:nth-child(3) { background: rgba(255,255,255,.5); width: 16px; height: 16px; align-self: center; }
 
 /* Events */
-.events-section { padding-top: 0; }
-.events { display: flex; flex-direction: column; gap: 14px; }
-.event { display: grid; grid-template-columns: 84px 1fr; gap: 20px; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
-.event .date { display: flex; flex-direction: column; align-items: center; justify-content: center; aspect-ratio: 1; border-radius: 14px; background: var(--hands); color: var(--hands-ink); font-family: var(--f-display); line-height: 1; }
+.events-section { padding-top: 10px; }
+.events { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.event { display: grid; grid-template-columns: 86px 1fr; gap: 20px; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 20px; min-width: 0; }
+.event .date { display: flex; flex-direction: column; align-items: center; justify-content: center; aspect-ratio: 1; border-radius: 16px; background: var(--hands); color: var(--hands-ink); font-family: var(--f-display); line-height: 1; }
 .event .date .m { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
-.event .date .d { font-size: 34px; font-weight: 700; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.event .date .d { font-size: 36px; font-weight: 700; margin-top: 6px; font-variant-numeric: tabular-nums; }
 .event .body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .event .when { font: 700 13px var(--f-display); letter-spacing: .12em; text-transform: uppercase; color: var(--water); }
 .event h3 { font-size: 22px; }
 .event p { color: var(--muted); font-size: 16px; }
-.events-empty { background: var(--tint); border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 6px; }
-.events-empty h3 { font-size: 22px; }
-.events-empty p { color: var(--muted); }
+.events-empty { position: relative; overflow: hidden; border: 2px dashed var(--line); border-radius: 24px; padding: 32px; display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; }
+.events-empty .cal { width: 74px; aspect-ratio: 1; border-radius: 18px; background: var(--tint); display: grid; place-items: center; color: var(--water); }
+.events-empty .cal svg { width: 36px; height: 36px; }
+.events-empty h3 { font-size: 23px; }
+.events-empty p { color: var(--muted); margin-top: 4px; }
 
 /* About */
-.about { background: var(--surface); border-block: 1px solid var(--line); }
-.about .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-.verse { font-family: var(--f-quote); font-style: italic; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.45; color: var(--fg); border-left: 4px solid var(--hands); padding-left: 24px; }
-.verse cite { display: block; margin-top: 14px; font: 600 14px var(--f-display); font-style: normal; letter-spacing: .14em; text-transform: uppercase; color: var(--water); }
+.about { background: var(--surface); }
+.about .edge svg path { fill: var(--surface); }
+.about .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+.verse-big { position: relative; padding: 46px 40px 40px; border-radius: 28px; background: linear-gradient(165deg, var(--water), var(--deep)); color: #fff; overflow: hidden; }
+.verse-big::before { content: "\201C"; position: absolute; top: -40px; left: 18px; font: 500 220px/1 var(--f-quote); color: rgba(255,255,255,.12); }
+.verse-big::after { content: ""; position: absolute; right: -70px; bottom: -70px; width: 220px; height: 220px; border-radius: 0 50% 50% 50%; transform: rotate(45deg); background: rgba(255,255,255,.07); }
+.verse-big p { position: relative; font: italic 400 clamp(21px, 2.4vw, 27px)/1.5 var(--f-quote); }
+.verse-big cite { position: relative; display: block; margin-top: 18px; font: 700 13px var(--f-display); font-style: normal; letter-spacing: .2em; text-transform: uppercase; color: #ffd0d3; }
 .about-text { display: flex; flex-direction: column; gap: 16px; color: var(--muted); }
-.about-text h2 { color: var(--fg); font-size: clamp(28px, 3.6vw, 38px); }
-.pillars { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
-.pill { font: 600 14px var(--f-display); letter-spacing: .06em; padding: 9px 14px 6px; border-radius: 999px; background: var(--tint); color: var(--fg); }
+.about-text .eyebrow { color: var(--hands); }
+.about-text h2 { color: var(--fg); font-size: clamp(30px, 3.8vw, 42px); }
+.pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 6px; }
+.pill { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 16px; background: var(--tint); color: var(--fg); font: 700 16px var(--f-display); letter-spacing: .04em; min-width: 0; }
+.pill i { width: 18px; height: 18px; border-radius: 0 50% 50% 50%; transform: rotate(45deg); background: var(--water); flex-shrink: 0; }
+.pill:nth-child(2) i { background: var(--hands); }
+.pill:nth-child(3) i { background: var(--sky); }
+.pill:nth-child(4) i { background: var(--deep); }
 
 /* Visit */
 .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.info { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
-.info .label { font: 700 12px var(--f-display); letter-spacing: .16em; text-transform: uppercase; color: var(--water); }
-.info .value { font-size: 19px; font-weight: 600; overflow-wrap: anywhere; }
+.info { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.info .label { font: 700 12px var(--f-display); letter-spacing: .18em; text-transform: uppercase; color: var(--water); }
+.info .value { font: 700 24px/1.25 var(--f-display); overflow-wrap: anywhere; }
 .info .note { color: var(--muted); font-size: 15px; }
-.maplink { font: 700 14px var(--f-display); letter-spacing: .06em; color: var(--hands); text-decoration: none; margin-top: 4px; }
+.maplink { font: 700 14px var(--f-display); letter-spacing: .06em; color: var(--hands); text-decoration: none; margin-top: 6px; }
 .maplink:hover { text-decoration: underline; text-underline-offset: 4px; }
-.welcome { grid-column: 1 / -1; background: linear-gradient(120deg, var(--water), var(--deep)); color: #fff; border: 0; border-radius: 18px; padding: 34px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.welcome { grid-column: 1 / -1; position: relative; overflow: hidden; background: linear-gradient(110deg, var(--hands), #7d1820); color: #fff; border-radius: 22px; padding: 34px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.welcome::after { content: ""; position: absolute; right: 18%; top: -60px; width: 160px; height: 160px; border-radius: 0 50% 50% 50%; transform: rotate(45deg); background: rgba(255,255,255,.08); }
+.welcome > * { position: relative; z-index: 1; }
 .welcome h3 { font-size: clamp(24px, 3vw, 32px); }
-.welcome p { opacity: .9; margin-top: 6px; max-width: 48ch; }
+.welcome p { opacity: .92; margin-top: 6px; max-width: 48ch; }
+.btn-white { background: #fff; color: var(--hands); }
 
-/* Prayer */
-.prayer { background: var(--surface); border-block: 1px solid var(--line); }
-.prayer .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
-.prayer-intro { display: flex; flex-direction: column; gap: 16px; color: var(--muted); }
-.prayer-intro h2 { color: var(--fg); font-size: clamp(28px, 3.6vw, 38px); }
-.prayer-intro .verse { font-size: 20px; }
-.prayer-form { background: var(--tint); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+/* Prayer: night water */
+.prayer { background: radial-gradient(90% 60% at 20% 0%, rgba(47, 155, 216, .25), transparent 60%), linear-gradient(180deg, var(--deep), var(--abyss)); color: #fff; }
+.prayer .edge svg path { fill: var(--deep); }
+.prayer .edge.bottom svg path { fill: var(--abyss); }
+.prayer .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: start; }
+.prayer-intro { display: flex; flex-direction: column; gap: 18px; color: #cfe2f0; }
+.prayer-intro .eyebrow { color: #ffb3b8; }
+.prayer-intro h2 { color: #fff; font-size: clamp(32px, 4.2vw, 46px); }
+.prayer-intro blockquote { margin: 6px 0 0; padding-left: 22px; border-left: 3px solid #ff8a91; }
+.prayer-intro blockquote p { font: italic 400 20px/1.5 var(--f-quote); color: #fff; }
+.prayer-intro cite { display: block; margin-top: 10px; font: 700 12px var(--f-display); font-style: normal; letter-spacing: .2em; text-transform: uppercase; color: #9fd3f3; }
+.prayer-form { background: var(--surface); color: var(--fg); border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px; min-width: 0; box-shadow: 0 30px 60px rgba(0, 0, 0, .3); }
 .field { display: flex; flex-direction: column; gap: 6px; }
-.field label, .check { font: 700 13px var(--f-display); letter-spacing: .1em; text-transform: uppercase; color: var(--fg); }
-.field input, .field textarea { font: 16px var(--f-body); color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; width: 100%; }
-.field textarea { min-height: 130px; resize: vertical; }
-.check { display: flex; align-items: center; gap: 10px; text-transform: none; letter-spacing: 0; font: 600 15px var(--f-body); }
+.field label { font: 700 13px var(--f-display); letter-spacing: .12em; text-transform: uppercase; color: var(--fg); }
+.field input, .field textarea { font: 16px var(--f-body); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 13px 15px; width: 100%; transition: border-color .15s, box-shadow .15s; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--sky); box-shadow: 0 0 0 4px color-mix(in srgb, var(--sky) 22%, transparent); }
+.field textarea { min-height: 140px; resize: vertical; }
+.check { display: flex; align-items: center; gap: 10px; font: 600 15px var(--f-body); color: var(--fg); }
 .check input { width: 20px; height: 20px; accent-color: var(--hands); }
 .form-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 .btn-line { border-color: var(--line); color: var(--fg); background: var(--surface); }
 .form-note { color: var(--muted); font-size: 14px; }
 
 /* Contact */
+.contact-section { padding-top: 120px; }
 .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
-.contact-card { display: flex; flex-direction: column; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px; text-decoration: none; color: var(--fg); min-width: 0; transition: transform .15s, border-color .15s; }
-.contact-card:hover { transform: translateY(-2px); border-color: var(--sky); }
-.contact-card .ic { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; color: #fff; }
-.contact-card .ic svg { width: 26px; height: 26px; }
-.contact-card h3 { font-size: 22px; }
+.contact-card { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 28px; text-decoration: none; color: var(--fg); min-width: 0; transition: transform .2s, border-color .2s, box-shadow .2s; }
+.contact-card:hover { transform: translateY(-4px); border-color: var(--sky); box-shadow: 0 18px 36px rgba(12, 63, 102, .12); }
+.contact-card .ic { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; color: #fff; }
+.contact-card .ic svg { width: 28px; height: 28px; }
+.contact-card h3 { font-size: 23px; }
 .contact-card p { color: var(--muted); font-size: 15px; }
-.contact-card .go { font: 700 14px var(--f-display); letter-spacing: .06em; color: var(--hands); margin-top: auto; }
+.contact-card .go { font: 700 14px var(--f-display); letter-spacing: .06em; color: var(--hands); margin-top: auto; padding-top: 6px; }
 .ic-wa { background: #1fa855; }
+.ic-ms { background: #0866ff; }
 .ic-fb { background: #1877f2; }
 .ic-yt { background: #e62117; }
 
 /* Floating chat */
-.fab { position: fixed; z-index: 8; right: calc(18px + env(safe-area-inset-right, 0px)); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); display: inline-flex; align-items: center; gap: 10px; background: #1fa855; color: #fff; text-decoration: none; font: 700 15px var(--f-display); letter-spacing: .04em; padding: 14px 18px 12px 14px; border-radius: 999px; box-shadow: 0 10px 28px rgba(4, 30, 52, .3); }
+.fab { position: fixed; z-index: 8; right: calc(18px + env(safe-area-inset-right, 0px)); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); display: inline-flex; align-items: center; gap: 10px; background: #1fa855; color: #fff; text-decoration: none; font: 700 15px var(--f-display); letter-spacing: .04em; padding: 14px 20px 12px 16px; border-radius: 999px; box-shadow: 0 12px 30px rgba(4, 30, 52, .35); transition: transform .15s; }
+.fab:hover { transform: translateY(-2px) scale(1.03); }
 .fab svg { width: 24px; height: 24px; margin-top: -2px; }
 .fab-messenger { background: #0866ff; }
-.ic-ms { background: #0866ff; }
 
-footer { background: var(--deep); color: rgba(255,255,255,.82); font-size: 14px; }
-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 28px; }
-footer strong { font-family: var(--f-display); letter-spacing: .08em; text-transform: uppercase; color: #fff; }
+/* Footer */
+footer { position: relative; background: var(--abyss); color: rgba(255,255,255,.78); font-size: 14px; margin-top: 60px; }
+footer .edge svg path { fill: var(--abyss); }
+footer .wrap { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; padding-block: 44px 36px; }
+footer .flogo { width: 74px; height: 74px; border-radius: 50%; background: #fff; padding: 4px; }
+footer .fcol { display: flex; flex-direction: column; gap: 4px; }
+footer strong { font: 700 18px var(--f-display); letter-spacing: .1em; text-transform: uppercase; color: #fff; }
+footer .fsoc { display: flex; gap: 10px; margin-top: 8px; }
+footer .fsoc a { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.1); color: #fff; }
+footer .fsoc a:hover { background: rgba(255,255,255,.2); }
+footer .fsoc svg { width: 18px; height: 18px; }
 
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   nav.links { display: none; }
-  .hero .wrap { grid-template-columns: 1fr; padding-block: 40px 100px; gap: 32px; }
-  .logo-tile { width: min(240px, 70%); grid-row: 1; }
+  .hero .wrap { grid-template-columns: 1fr; padding-block: 34px 140px; gap: 10px; }
+  .drop-wrap { width: min(220px, 62%); grid-row: 1; }
   .schedule { grid-template-columns: 1fr; }
-  .about .wrap, .visit-grid, .prayer .wrap { grid-template-columns: 1fr; }
+  .about .wrap, .visit-grid, .prayer .wrap { grid-template-columns: 1fr; gap: 32px; }
+  .week-card { grid-template-columns: 1fr; gap: 14px; }
   .fab span { display: none; }
-  .fab { padding: 14px; }
+  .fab { padding: 15px; }
 }
-@media (max-width: 420px) {
+@media (max-width: 520px) {
   .brand span { display: none; }
+  .days { gap: 4px; }
+  .day { padding: 8px 2px 6px; font-size: 13px; }
+  .day .t { font-size: 10px; letter-spacing: 0; }
+  .events { grid-template-columns: 1fr; }
+  .events-empty { grid-template-columns: 1fr; }
+  .pillars { grid-template-columns: 1fr 1fr; }
+  .verse-big { padding: 40px 24px 30px; }
+  footer .wrap { grid-template-columns: 1fr; }
+  section { padding-block: 64px; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .logo-tile { animation: float 7s ease-in-out infinite; }
-  @keyframes float { 50% { transform: translateY(-8px); } }
+  .waves .w1 { animation: drift 22s linear infinite; }
+  .waves .w2 { animation: drift 15s linear infinite reverse; }
+  .waves .w3 { animation: drift 30s linear infinite; }
+  @keyframes drift { to { transform: translateX(-50%); } }
+  .drop { animation: bob 7s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: rotate(45deg) translate(-6px, -6px); } }
+  .drop-wrap::before { animation: ripple 5s ease-out infinite; }
+  .drop-wrap::after { animation: ripple 5s ease-out 2.5s infinite; }
+  @keyframes ripple { 0% { opacity: .9; transform: translate(-50%, -50%) scale(.55); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.15); } }
+  .next .pulse { animation: pulse 2s ease-out infinite; }
+  @keyframes pulse { 70% { box-shadow: 0 0 0 10px rgba(255, 107, 114, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 107, 114, 0); } }
+  .rays { animation: sway 12s ease-in-out infinite alternate; }
+  @keyframes sway { from { transform: skewX(-4deg); } to { transform: skewX(4deg); } }
 }
 </style>
 
@@ -201,9 +308,9 @@ footer strong { font-family: var(--f-display); letter-spacing: .08em; text-trans
   <div class="wrap">
     <a class="brand" href="#inicio"><img src="logo.png" alt=""><span>Fuente de Vida</span></a>
     <nav class="links" aria-label="Principal">
-      <a href="#horarios" data-es="Horarios" data-en="Service Times">Horarios</a>
+      <a href="#horarios" data-es="Horarios" data-en="Services">Horarios</a>
       <a href="#eventos" data-es="Eventos" data-en="Events">Eventos</a>
-      <a href="#nosotros" data-es="Nosotros" data-en="About Us">Nosotros</a>
+      <a href="#nosotros" data-es="Nosotros" data-en="About">Nosotros</a>
       <a href="#oracion" data-need="chat" data-es="Oración" data-en="Prayer">Oración</a>
       <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
     </nav>
@@ -216,17 +323,40 @@ footer strong { font-family: var(--f-display); letter-spacing: .08em; text-trans
 
 <main>
   <div class="hero" id="inicio">
+    <div class="rays" aria-hidden="true"></div>
+    <canvas id="bubbles" aria-hidden="true"></canvas>
     <div class="wrap">
       <div>
-        <p class="eyebrow" data-es="Bienvenidos a casa" data-en="Welcome home">Bienvenidos a casa</p>
-        <h1><span data-es="Iglesia" data-en="Church">Iglesia</span>Fuente de Vida</h1>
+        <p class="eyebrow" data-es="Bienvenidos a casa · Las Cruces, NM" data-en="Welcome home · Las Cruces, NM">Bienvenidos a casa · Las Cruces, NM</p>
+        <h1><span class="small" data-es="Iglesia" data-en="Church">Iglesia</span><span class="big">Fuente de Vida</span></h1>
         <p class="lede" data-es="Una familia de fe donde puedes encontrar a Dios, crecer en su Palabra y adorarle juntos." data-en="A family of faith where you can meet God, grow in His Word, and worship Him together.">Una familia de fe donde puedes encontrar a Dios, crecer en su Palabra y adorarle juntos.</p>
+        <div class="next" id="next-service">
+          <span class="pulse" aria-hidden="true"></span>
+          <span class="txt"><span class="lbl" id="next-lbl">Próximo servicio</span><span class="val" id="next-val">Domingo 11:00 AM</span></span>
+        </div>
         <div class="cta-row">
           <a class="btn btn-red" href="#horarios" data-es="Ver horarios" data-en="Service times">Ver horarios</a>
           <a class="btn btn-ghost" href="#visitanos" data-es="Planea tu visita" data-en="Plan your visit">Planea tu visita</a>
         </div>
       </div>
-      <div class="logo-tile"><img src="logo.png" alt="Logo de Iglesia Fuente de Vida"></div>
+      <div class="drop-wrap"><div class="drop"><img src="logo.png" alt="Logo de Iglesia Fuente de Vida"></div></div>
+    </div>
+    <div class="waves" aria-hidden="true">
+      <svg class="w1" viewBox="0 0 2880 110" preserveAspectRatio="none"><path d="M0 50 C 240 10 480 10 720 50 S 1200 90 1440 50 S 1920 10 2160 50 S 2640 90 2880 50 V110 H0Z"/></svg>
+      <svg class="w2" viewBox="0 0 2880 110" preserveAspectRatio="none"><path d="M0 70 C 180 40 540 40 720 70 S 1260 100 1440 70 S 1980 40 2160 70 S 2700 100 2880 70 V110 H0Z"/></svg>
+      <svg class="w3" viewBox="0 0 2880 110" preserveAspectRatio="none"><path d="M0 85 C 360 65 360 65 720 85 S 1080 105 1440 85 S 1800 65 2160 85 S 2520 105 2880 85 V110 H0Z"/></svg>
+    </div>
+  </div>
+
+  <div class="week">
+    <div class="wrap">
+      <div class="week-card">
+        <div>
+          <p class="eyebrow" data-es="Tu semana con nosotros" data-en="Your week with us">Tu semana con nosotros</p>
+          <p class="week-title" data-es="Dos días para adorar juntos" data-en="Two days to worship together">Dos días para adorar juntos</p>
+        </div>
+        <div class="days" id="days" role="list"></div>
+      </div>
     </div>
   </div>
 
@@ -239,22 +369,23 @@ footer strong { font-family: var(--f-display); letter-spacing: .08em; text-trans
       </div>
       <div class="schedule">
         <article class="service">
-          <p class="day" data-es="Martes" data-en="Tuesdays">Martes</p>
+          <p class="day-name" data-es="Martes" data-en="Tuesdays">Martes</p>
           <p class="time">7:00<small>PM</small></p>
           <h3 data-es="Culto de Adoración" data-en="Worship Night">Culto de Adoración</h3>
           <p data-es="Una noche entre semana para adorar, orar y recibir la Palabra." data-en="A weeknight gathering to worship, pray, and hear the Word.">Una noche entre semana para adorar, orar y recibir la Palabra.</p>
         </article>
         <article class="service">
-          <p class="day" data-es="Domingos" data-en="Sundays">Domingos</p>
+          <p class="day-name" data-es="Domingos" data-en="Sundays">Domingos</p>
           <p class="time">11:00<small>AM</small></p>
           <h3 data-es="Servicio de Adoración" data-en="Sunday Worship Service">Servicio de Adoración</h3>
           <p data-es="Nuestro servicio principal: alabanza, adoración y predicación para toda la familia." data-en="Our main service: praise, worship, and preaching for the whole family.">Nuestro servicio principal: alabanza, adoración y predicación para toda la familia.</p>
         </article>
         <article class="service kids">
-          <p class="day" data-es="Domingos" data-en="Sundays">Domingos</p>
+          <p class="day-name" data-es="Domingos" data-en="Sundays">Domingos</p>
           <p class="time" data-es="Escuela Dominical" data-en="Sunday School">Escuela Dominical</p>
           <h3 data-es="Para niños" data-en="For kids">Para niños</h3>
           <p data-es="Clases bíblicas para los más pequeños, con maestros que les enseñan el amor de Jesús." data-en="Bible classes for children, with teachers who share the love of Jesus.">Clases bíblicas para los más pequeños, con maestros que les enseñan el amor de Jesús.</p>
+          <div class="kids-art" aria-hidden="true"><span></span><span></span><span></span></div>
         </article>
       </div>
     </div>
@@ -269,33 +400,38 @@ footer strong { font-family: var(--f-display); letter-spacing: .08em; text-trans
       </div>
       <div class="events" id="events-list"></div>
       <div class="events-empty" id="events-empty" hidden>
-        <h3 data-es="Pronto anunciaremos nuevos eventos" data-en="New events coming soon">Pronto anunciaremos nuevos eventos</h3>
-        <p data-es="Mientras tanto, te esperamos los martes a las 7:00 PM y los domingos a las 11:00 AM." data-en="In the meantime, join us Tuesdays at 7:00 PM and Sundays at 11:00 AM.">Mientras tanto, te esperamos los martes a las 7:00 PM y los domingos a las 11:00 AM.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="about" id="nosotros">
-    <div class="wrap">
-      <blockquote class="verse">
-        <p data-es="«El que bebiere del agua que yo le daré, no tendrá sed jamás; sino que el agua que yo le daré será en él una fuente de agua que salte para vida eterna.»" data-en="“Whoever drinks the water I give them will never thirst. Indeed, the water I give them will become in them a spring of water welling up to eternal life.”">«El que bebiere del agua que yo le daré, no tendrá sed jamás; sino que el agua que yo le daré será en él una fuente de agua que salte para vida eterna.»</p>
-        <cite data-es="Juan 4:14" data-en="John 4:14">Juan 4:14</cite>
-      </blockquote>
-      <div class="about-text">
-        <p class="eyebrow" style="color: var(--hands)" data-es="Nosotros" data-en="About Us">Nosotros</p>
-        <h2 data-es="Una fuente de vida para nuestra comunidad" data-en="A spring of life for our community">Una fuente de vida para nuestra comunidad</h2>
-        <p data-es="Somos una iglesia cristiana en Las Cruces, Nuevo México, pastoreada por Mayra y Louie Rey. Creemos que Jesús es el agua viva que transforma vidas, y nos reunimos para adorar a Dios, aprender de su Palabra y servir con amor a nuestras familias y vecinos." data-en="We are a Christian church in Las Cruces, New Mexico, led by Pastors Mayra and Louie Rey. We believe Jesus is the living water who transforms lives, and we gather to worship God, learn from His Word, and serve our families and neighbors with love.">Somos una iglesia cristiana en Las Cruces, Nuevo México, pastoreada por Mayra y Louie Rey. Creemos que Jesús es el agua viva que transforma vidas, y nos reunimos para adorar a Dios, aprender de su Palabra y servir con amor a nuestras familias y vecinos.</p>
-        <div class="pillars">
-          <span class="pill" data-es="Adoración" data-en="Worship">Adoración</span>
-          <span class="pill" data-es="La Palabra" data-en="The Word">La Palabra</span>
-          <span class="pill" data-es="Familia" data-en="Family">Familia</span>
-          <span class="pill" data-es="Servicio" data-en="Service">Servicio</span>
+        <div class="cal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+        <div>
+          <h3 data-es="Pronto anunciaremos nuevos eventos" data-en="New events coming soon">Pronto anunciaremos nuevos eventos</h3>
+          <p data-es="Mientras tanto, te esperamos los martes a las 7:00 PM y los domingos a las 11:00 AM." data-en="In the meantime, join us Tuesdays at 7:00 PM and Sundays at 11:00 AM.">Mientras tanto, te esperamos los martes a las 7:00 PM y los domingos a las 11:00 AM.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="visitanos">
+  <section class="about" id="nosotros">
+    <div class="edge top" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60 C 360 0 1080 0 1440 60 Z"/></svg></div>
+    <div class="wrap">
+      <blockquote class="verse-big">
+        <p data-es="«El que bebiere del agua que yo le daré, no tendrá sed jamás; sino que el agua que yo le daré será en él una fuente de agua que salte para vida eterna.»" data-en="“Whoever drinks the water I give them will never thirst. Indeed, the water I give them will become in them a spring of water welling up to eternal life.”">«El que bebiere del agua que yo le daré, no tendrá sed jamás; sino que el agua que yo le daré será en él una fuente de agua que salte para vida eterna.»</p>
+        <cite data-es="Juan 4:14" data-en="John 4:14">Juan 4:14</cite>
+      </blockquote>
+      <div class="about-text">
+        <p class="eyebrow" data-es="Nosotros" data-en="About Us">Nosotros</p>
+        <h2 data-es="Una fuente de vida para nuestra comunidad" data-en="A spring of life for our community">Una fuente de vida para nuestra comunidad</h2>
+        <p data-es="Somos una iglesia cristiana en Las Cruces, Nuevo México, pastoreada por Mayra y Louie Rey. Creemos que Jesús es el agua viva que transforma vidas, y nos reunimos para adorar a Dios, aprender de su Palabra y servir con amor a nuestras familias y vecinos." data-en="We are a Christian church in Las Cruces, New Mexico, led by Pastors Mayra and Louie Rey. We believe Jesus is the living water who transforms lives, and we gather to worship God, learn from His Word, and serve our families and neighbors with love.">Somos una iglesia cristiana en Las Cruces, Nuevo México, pastoreada por Mayra y Louie Rey. Creemos que Jesús es el agua viva que transforma vidas, y nos reunimos para adorar a Dios, aprender de su Palabra y servir con amor a nuestras familias y vecinos.</p>
+        <div class="pillars">
+          <span class="pill"><i></i><span data-es="Adoración" data-en="Worship">Adoración</span></span>
+          <span class="pill"><i></i><span data-es="La Palabra" data-en="The Word">La Palabra</span></span>
+          <span class="pill"><i></i><span data-es="Familia" data-en="Family">Familia</span></span>
+          <span class="pill"><i></i><span data-es="Servicio" data-en="Service">Servicio</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="edge bottom" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60 C 360 0 1080 0 1440 60 Z"/></svg></div>
+  </section>
+
+  <section id="visitanos" style="padding-top: 120px">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow" data-es="Visítanos" data-en="Visit Us">Visítanos</p>
@@ -317,19 +453,20 @@ footer strong { font-family: var(--f-display); letter-spacing: .08em; text-trans
             <h3 data-es="¿Primera vez? ¡Bienvenido!" data-en="First time? Welcome!">¿Primera vez? ¡Bienvenido!</h3>
             <p data-es="Servicios en español con un corazón abierto para todos. Llega unos minutos antes y te ayudaremos a encontrar tu lugar." data-en="Services with an open heart for everyone. Arrive a few minutes early and we'll help you find your seat.">Servicios en español con un corazón abierto para todos. Llega unos minutos antes y te ayudaremos a encontrar tu lugar.</p>
           </div>
-          <a class="btn btn-red" href="#horarios" data-es="Domingo 11:00 AM" data-en="Sunday 11:00 AM">Domingo 11:00 AM</a>
+          <a class="btn btn-white" href="#horarios" data-es="Domingo 11:00 AM" data-en="Sunday 11:00 AM">Domingo 11:00 AM</a>
         </div>
       </div>
     </div>
   </section>
 
   <section class="prayer" id="oracion" data-need="chat">
+    <div class="edge top" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60 C 240 10 480 10 720 35 S 1200 60 1440 15 V60 Z"/></svg></div>
     <div class="wrap">
       <div class="prayer-intro">
-        <p class="eyebrow" style="color: var(--hands)" data-es="Peticiones de oración" data-en="Prayer Requests">Peticiones de oración</p>
+        <p class="eyebrow" data-es="Peticiones de oración" data-en="Prayer Requests">Peticiones de oración</p>
         <h2 data-es="¿Cómo podemos orar por ti?" data-en="How can we pray for you?">¿Cómo podemos orar por ti?</h2>
         <p data-es="Escribe tu petición y nuestros pastores y equipo de oración estarán orando por ti. Puedes dejar tu nombre o enviarla de forma anónima." data-en="Write your request and our pastors and prayer team will pray for you. You can leave your name or send it anonymously.">Escribe tu petición y nuestros pastores y equipo de oración estarán orando por ti. Puedes dejar tu nombre o enviarla de forma anónima.</p>
-        <blockquote class="verse">
+        <blockquote>
           <p data-es="«Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.»" data-en="“Cast all your anxiety on Him because He cares for you.”">«Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.»</p>
           <cite data-es="1 Pedro 5:7" data-en="1 Peter 5:7">1 Pedro 5:7</cite>
         </blockquote>
@@ -351,9 +488,10 @@ footer strong { font-family: var(--f-display); letter-spacing: .08em; text-trans
         <p class="form-note" id="pr-note" data-es="Se abrirá WhatsApp con tu petición lista. Solo tienes que tocar Enviar." data-en="WhatsApp will open with your request ready. Just tap Send.">Se abrirá WhatsApp con tu petición lista. Solo tienes que tocar Enviar.</p>
       </form>
     </div>
+    <div class="edge bottom" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60 C 240 10 480 10 720 35 S 1200 60 1440 15 V60 Z"/></svg></div>
   </section>
 
-  <section id="contacto">
+  <section class="contact-section" id="contacto">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow" data-es="Contacto" data-en="Contact">Contacto</p>
@@ -396,10 +534,19 @@ footer strong { font-family: var(--f-display); letter-spacing: .08em; text-trans
 </a>
 
 <footer>
+  <div class="edge top" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 30 C 360 70 720 -10 1080 30 S 1440 40 1440 40 V60 H0 Z"/></svg></div>
   <div class="wrap">
-    <strong>Iglesia Fuente de Vida</strong>
-    <span>1530 Arizona St. · Las Cruces, NM 88001</span>
-    <span data-es="Martes 7:00 PM · Domingos 11:00 AM" data-en="Tuesdays 7:00 PM · Sundays 11:00 AM">Martes 7:00 PM · Domingos 11:00 AM</span>
+    <img class="flogo" src="logo.png" alt="">
+    <div class="fcol">
+      <strong>Iglesia Fuente de Vida</strong>
+      <span>1530 Arizona St. · Las Cruces, NM 88001</span>
+      <span data-es="Martes 7:00 PM · Domingos 11:00 AM" data-en="Tuesdays 7:00 PM · Sundays 11:00 AM">Martes 7:00 PM · Domingos 11:00 AM</span>
+      <div class="fsoc">
+        <a data-link="facebook" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4a20 20 0 0 0-2.2-.1c-2.2 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21z"/></svg></a>
+        <a data-link="youtube" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4a2.5 2.5 0 0 0-1.8 1.8A26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></svg></a>
+        <a data-link="messenger" target="_blank" rel="noopener" aria-label="Messenger"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.4 2 2 6.1 2 11.4c0 2.9 1.3 5.5 3.5 7.2V22l3.2-1.8c1 .3 2.1.4 3.3.4 5.6 0 10-4.1 10-9.3S17.6 2 12 2zm1 12.5-2.6-2.7-5 2.7 5.5-5.8 2.6 2.7 4.9-2.7z"/></svg></a>
+      </div>
+    </div>
   </div>
 </footer>
 
@@ -422,12 +569,78 @@ var CONFIG = {
   youtube: 'https://www.youtube.com/@folac7048'
 };
 
+/* HORARIOS (hora de Las Cruces). day: 0 = domingo ... 6 = sábado */
+var SERVICES = [
+  { day: 2, h: 19, m: 0, es: 'Martes 7:00 PM', en: 'Tuesday 7:00 PM' },
+  { day: 0, h: 11, m: 0, es: 'Domingo 11:00 AM', en: 'Sunday 11:00 AM' }
+];
+
 (function () {
   var buttons = document.querySelectorAll('.lang button');
+  var currentLang = 'es';
   var MONTHS = {
     es: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
     en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   };
+
+  /* Time in Las Cruces (Mountain Time), whatever the visitor's own time zone. */
+  function churchNow() {
+    try {
+      var parts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Denver', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
+      var o = {};
+      parts.forEach(function (p) { o[p.type] = p.value; });
+      return { day: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(o.weekday), h: (+o.hour) % 24, m: +o.minute };
+    } catch (e) {
+      var d = new Date();
+      return { day: d.getDay(), h: d.getHours(), m: d.getMinutes() };
+    }
+  }
+
+  function renderNext(lang) {
+    var now = churchNow(), WEEK = 10080, nowMin = now.day * 1440 + now.h * 60 + now.m;
+    var best = null, live = null;
+    SERVICES.forEach(function (s) {
+      var sMin = s.day * 1440 + s.h * 60 + s.m;
+      var since = (nowMin - sMin + WEEK) % WEEK;
+      if (since < 120) live = s;
+      var until = (sMin - nowMin + WEEK) % WEEK;
+      if (!best || until < best.until) best = { s: s, until: until };
+    });
+    var lbl = document.getElementById('next-lbl'), val = document.getElementById('next-val');
+    if (live) {
+      lbl.textContent = lang === 'es' ? 'Ahora mismo' : 'Right now';
+      val.textContent = lang === 'es' ? '¡Estamos en servicio!' : "We're in service!";
+      return;
+    }
+    var d = Math.floor(best.until / 1440), h = Math.floor(best.until % 1440 / 60), m = best.until % 60;
+    var left = d > 0 ? d + ' d ' + h + ' h' : (h > 0 ? h + ' h ' + m + ' min' : m + ' min');
+    lbl.textContent = lang === 'es' ? 'Próximo servicio' : 'Next service';
+    val.innerHTML = '';
+    val.appendChild(document.createTextNode(best.s[lang] + ' · '));
+    var em = document.createElement('em');
+    em.textContent = (lang === 'es' ? 'en ' : 'in ') + left;
+    val.appendChild(em);
+  }
+
+  function renderWeek(lang) {
+    var labels = lang === 'es' ? ['L', 'M', 'M', 'J', 'V', 'S', 'D'] : ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    var full = lang === 'es' ? ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'] : ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    var today = churchNow().day, box = document.getElementById('days');
+    box.innerHTML = '';
+    for (var i = 0; i < 7; i++) {
+      var jsDay = (i + 1) % 7;
+      var svc = SERVICES.filter(function (s) { return s.day === jsDay; })[0];
+      var el = document.createElement('div');
+      el.className = 'day' + (svc ? ' svc' : '') + (jsDay === today ? ' today' : '');
+      el.setAttribute('role', 'listitem');
+      el.setAttribute('aria-label', full[i] + (svc ? ' · ' + svc[lang] : ''));
+      el.innerHTML = '<span></span><span class="dot"></span><span class="t"></span>';
+      el.firstChild.textContent = labels[i];
+      el.lastChild.textContent = svc ? svc[lang].split(' ').slice(1).join(' ').replace(':00', '') : '';
+      box.appendChild(el);
+    }
+  }
+
   function renderEvents(lang) {
     var list = document.getElementById('events-list');
     var now = new Date();
@@ -455,6 +668,7 @@ var CONFIG = {
     list.hidden = upcoming.length === 0;
     document.getElementById('events-empty').hidden = upcoming.length > 0;
   }
+
   function linkFor(key) {
     var v = (CONFIG[key] || '').trim();
     if (key === 'chat') return linkFor('whatsapp') || linkFor('messenger');
@@ -480,7 +694,6 @@ var CONFIG = {
       document.getElementById('chat-fab').classList.add('fab-messenger');
     }
   }
-  var currentLang = 'es';
   function prayerText() {
     var name = document.getElementById('pr-name').value.trim();
     var text = document.getElementById('pr-text').value.trim();
@@ -518,18 +731,67 @@ var CONFIG = {
     document.documentElement.lang = lang;
     currentLang = lang;
     renderEvents(lang);
+    renderNext(lang);
+    renderWeek(lang);
     updatePrayer();
     document.querySelectorAll('[data-' + lang + ']').forEach(function (el) {
       el.textContent = el.getAttribute('data-' + lang);
     });
     buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
-    document.getElementById('pr-copy').textContent = document.getElementById('pr-copy').getAttribute('data-' + lang);
     try { localStorage.setItem('ifv-lang', lang); } catch (e) {}
   }
   buttons.forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang); }); });
   var saved = null;
   try { saved = localStorage.getItem('ifv-lang'); } catch (e) {}
   setLang(saved === 'en' ? 'en' : 'es');
+  setInterval(function () { renderNext(currentLang); }, 30000);
+
+  /* Rising bubbles in the hero. */
+  var canvas = document.getElementById('bubbles'), ctx = canvas.getContext && canvas.getContext('2d');
+  if (!ctx) return;
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2), bubbles = [];
+  function size() {
+    var r = canvas.getBoundingClientRect();
+    W = r.width; H = r.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function spawn(anyY) {
+    return { x: Math.random() * W, y: anyY ? Math.random() * H : H + 10, r: 1 + Math.random() * 4.5, v: .25 + Math.random() * .7, a: .12 + Math.random() * .3, ph: Math.random() * 6.28 };
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    bubbles.forEach(function (b) {
+      ctx.beginPath();
+      ctx.arc(b.x + Math.sin(b.ph) * 6, b.y, b.r, 0, 6.283);
+      ctx.fillStyle = 'rgba(255,255,255,' + b.a + ')';
+      ctx.fill();
+      if (b.r > 3) {
+        ctx.beginPath();
+        ctx.arc(b.x + Math.sin(b.ph) * 6 - b.r * .35, b.y - b.r * .35, b.r * .3, 0, 6.283);
+        ctx.fillStyle = 'rgba(255,255,255,' + Math.min(1, b.a + .3) + ')';
+        ctx.fill();
+      }
+    });
+  }
+  function tick() {
+    bubbles.forEach(function (b, i) {
+      b.y -= b.v; b.ph += .015;
+      if (b.y < -10) bubbles[i] = spawn(false);
+    });
+    draw();
+    if (!document.hidden) requestAnimationFrame(tick);
+  }
+  size();
+  var count = Math.round(Math.min(70, W / 16));
+  for (var i = 0; i < count; i++) bubbles.push(spawn(true));
+  window.addEventListener('resize', function () { size(); draw(); });
+  if (still) draw();
+  else {
+    requestAnimationFrame(tick);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) requestAnimationFrame(tick); });
+  }
 })();
 </script>
 </body>

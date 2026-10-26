@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Iglesia Fuente de Vida en Las Cruces, NM. Martes: Culto de Adoración 7:00 PM. Domingos: Servicio de Adoración 11:00 AM y Escuela Dominical para niños.">
+<link rel="icon" href="logo.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Iglesia Fuente de Vida</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Mulish:wght@400;600;700&display=swap">
+<style>
+/* Layout: deep-water hero with the logo, then light sections; blue carries the page, red marks the "hands" moments (times, calls to action). */
+:root {
+  --sky: #2f9bd8;
+  --water: #0b6aad;
+  --deep: #0c3f66;
+  --hands: #a3212a;
+  --hands-ink: #ffffff;
+  --bg: #f6f9fc;
+  --surface: #ffffff;
+  --fg: #12263a;
+  --muted: #4d6378;
+  --line: #d7e3ee;
+  --tint: #e8f2fa;
+  --hero-fg: #ffffff;
+  --f-display: "Josefin Sans", "Futura", "Century Gothic", system-ui, sans-serif;
+  --f-body: "Mulish", "Segoe UI", system-ui, sans-serif;
+  --f-quote: "Lora", Georgia, serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --sky: #5cb6ea; --water: #3d93d4; --deep: #082c48; --hands: #d2444d;
+    --bg: #071a2b; --surface: #0d2539; --fg: #e6eff7; --muted: #9db3c7;
+    --line: #1d3a54; --tint: #10304b; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --sky: #5cb6ea; --water: #3d93d4; --deep: #082c48; --hands: #d2444d;
+  --bg: #071a2b; --surface: #0d2539; --fg: #e6eff7; --muted: #9db3c7;
+  --line: #1d3a54; --tint: #10304b; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 17px; line-height: 1.6; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.1; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+
+/* Header */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--deep); }
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: color-mix(in srgb, var(--deep) 94%, transparent); backdrop-filter: blur(8px); color: var(--hero-fg); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--f-display); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: 15px; }
+.brand img { width: 38px; height: 38px; border-radius: 50%; background: #fff; padding: 2px; }
+nav.links { display: flex; gap: 22px; font-size: 15px; }
+nav.links a { text-decoration: none; opacity: .85; }
+nav.links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
+.lang { display: inline-flex; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: 3px; flex-shrink: 0; }
+.lang button { font: 700 13px var(--f-display); letter-spacing: .08em; color: var(--hero-fg); background: transparent; border: 0; border-radius: 999px; padding: 6px 12px 4px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: #fff; color: var(--deep); }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; color: var(--hero-fg); background: linear-gradient(170deg, var(--sky) 0%, var(--water) 42%, var(--deep) 100%); }
+.hero::after { content: ""; position: absolute; left: -10%; right: -10%; bottom: -1px; height: 70px; background: var(--bg); border-radius: 50% 50% 0 0 / 100% 100% 0 0; }
+.hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: center; padding-block: 64px 120px; }
+.eyebrow { font: 600 13px var(--f-display); letter-spacing: .18em; text-transform: uppercase; opacity: .85; }
+.hero h1 { font-size: clamp(40px, 6.4vw, 72px); font-weight: 700; letter-spacing: .01em; margin-top: 14px; text-transform: uppercase; }
+.hero h1 span { display: block; font-weight: 400; font-size: .48em; letter-spacing: .2em; margin-bottom: 6px; }
+.hero .lede { font-family: var(--f-quote); font-size: 20px; max-width: 34ch; margin-top: 20px; opacity: .95; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font: 700 15px var(--f-display); letter-spacing: .08em; text-transform: uppercase; text-decoration: none; padding: 15px 22px 12px; border-radius: 999px; border: 2px solid transparent; cursor: pointer; }
+.btn-red { background: var(--hands); color: var(--hands-ink); }
+.btn-red:hover { filter: brightness(1.08); }
+.btn-ghost { border-color: rgba(255,255,255,.6); color: #fff; }
+.btn-ghost:hover { background: rgba(255,255,255,.12); }
+.logo-tile { justify-self: center; width: min(340px, 100%); aspect-ratio: 1; max-width: 100%; background: #fff; border-radius: 50% 50% 50% 50% / 58% 58% 42% 42%; display: grid; place-items: center; box-shadow: 0 30px 60px rgba(4, 30, 52, .35); }
+.logo-tile img { width: 86%; }
+
+/* Sections */
+section { padding-block: 72px; }
+.section-head { max-width: 640px; margin-bottom: 36px; }
+.section-head .eyebrow { color: var(--hands); opacity: 1; }
+.section-head h2 { font-size: clamp(30px, 4vw, 42px); margin-top: 10px; color: var(--fg); }
+.section-head p { color: var(--muted); margin-top: 12px; }
+
+/* Schedule */
+.schedule { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.service { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.service .day { font: 700 13px var(--f-display); letter-spacing: .16em; text-transform: uppercase; color: var(--water); }
+.service .time { font: 700 46px/1 var(--f-display); color: var(--hands); font-variant-numeric: tabular-nums; }
+.service .time small { font-size: 18px; letter-spacing: .08em; margin-left: 4px; }
+.service h3 { font-size: 22px; }
+.service p { color: var(--muted); font-size: 16px; }
+.service.kids { background: var(--tint); border-color: transparent; }
+.service.kids .time { font-size: 30px; line-height: 1.15; }
+
+/* About */
+.about { background: var(--surface); border-block: 1px solid var(--line); }
+.about .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.verse { font-family: var(--f-quote); font-style: italic; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.45; color: var(--fg); border-left: 4px solid var(--hands); padding-left: 24px; }
+.verse cite { display: block; margin-top: 14px; font: 600 14px var(--f-display); font-style: normal; letter-spacing: .14em; text-transform: uppercase; color: var(--water); }
+.about-text { display: flex; flex-direction: column; gap: 16px; color: var(--muted); }
+.about-text h2 { color: var(--fg); font-size: clamp(28px, 3.6vw, 38px); }
+.pillars { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.pill { font: 600 14px var(--f-display); letter-spacing: .06em; padding: 9px 14px 6px; border-radius: 999px; background: var(--tint); color: var(--fg); }
+
+/* Visit */
+.visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.info { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.info .label { font: 700 12px var(--f-display); letter-spacing: .16em; text-transform: uppercase; color: var(--water); }
+.info .value { font-size: 19px; font-weight: 600; overflow-wrap: anywhere; }
+.info .note { color: var(--muted); font-size: 15px; }
+.maplink { font: 700 14px var(--f-display); letter-spacing: .06em; color: var(--hands); text-decoration: none; margin-top: 4px; }
+.maplink:hover { text-decoration: underline; text-underline-offset: 4px; }
+.welcome { grid-column: 1 / -1; background: linear-gradient(120deg, var(--water), var(--deep)); color: #fff; border: 0; border-radius: 18px; padding: 34px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.welcome h3 { font-size: clamp(24px, 3vw, 32px); }
+.welcome p { opacity: .9; margin-top: 6px; max-width: 48ch; }
+
+footer { background: var(--deep); color: rgba(255,255,255,.82); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 28px; }
+footer strong { font-family: var(--f-display); letter-spacing: .08em; text-transform: uppercase; color: #fff; }
+
+@media (max-width: 860px) {
+  nav.links { display: none; }
+  .hero .wrap { grid-template-columns: 1fr; padding-block: 40px 100px; gap: 32px; }
+  .logo-tile { width: min(240px, 70%); grid-row: 1; }
+  .schedule { grid-template-columns: 1fr; }
+  .about .wrap, .visit-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 420px) {
+  .brand span { display: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .logo-tile { animation: float 7s ease-in-out infinite; }
+  @keyframes float { 50% { transform: translateY(-8px); } }
+}
+</style>
+
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio"><img src="logo.png" alt=""><span>Fuente de Vida</span></a>
+    <nav class="links" aria-label="Principal">
+      <a href="#horarios" data-es="Horarios" data-en="Service Times">Horarios</a>
+      <a href="#nosotros" data-es="Nosotros" data-en="About Us">Nosotros</a>
+      <a href="#visitanos" data-es="Visítanos" data-en="Visit Us">Visítanos</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" id="btn-es" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" id="btn-en" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero" id="inicio">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow" data-es="Bienvenidos a casa" data-en="Welcome home">Bienvenidos a casa</p>
+        <h1><span data-es="Iglesia" data-en="Church">Iglesia</span>Fuente de Vida</h1>
+        <p class="lede" data-es="Una familia de fe donde puedes encontrar a Dios, crecer en su Palabra y adorarle juntos." data-en="A family of faith where you can meet God, grow in His Word, and worship Him together.">Una familia de fe donde puedes encontrar a Dios, crecer en su Palabra y adorarle juntos.</p>
+        <div class="cta-row">
+          <a class="btn btn-red" href="#horarios" data-es="Ver horarios" data-en="Service times">Ver horarios</a>
+          <a class="btn btn-ghost" href="#visitanos" data-es="Planea tu visita" data-en="Plan your visit">Planea tu visita</a>
+        </div>
+      </div>
+      <div class="logo-tile"><img src="logo.png" alt="Logo de Iglesia Fuente de Vida"></div>
+    </div>
+  </div>
+
+  <section id="horarios">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-es="Horarios" data-en="Service Times">Horarios</p>
+        <h2 data-es="Acompáñanos esta semana" data-en="Join us this week">Acompáñanos esta semana</h2>
+        <p data-es="Todos son bienvenidos. Ven tal como eres." data-en="Everyone is welcome. Come as you are.">Todos son bienvenidos. Ven tal como eres.</p>
+      </div>
+      <div class="schedule">
+        <article class="service">
+          <p class="day" data-es="Martes" data-en="Tuesdays">Martes</p>
+          <p class="time">7:00<small>PM</small></p>
+          <h3 data-es="Culto de Adoración" data-en="Worship Night">Culto de Adoración</h3>
+          <p data-es="Una noche entre semana para adorar, orar y recibir la Palabra." data-en="A weeknight gathering to worship, pray, and hear the Word.">Una noche entre semana para adorar, orar y recibir la Palabra.</p>
+        </article>
+        <article class="service">
+          <p class="day" data-es="Domingos" data-en="Sundays">Domingos</p>
+          <p class="time">11:00<small>AM</small></p>
+          <h3 data-es="Servicio de Adoración" data-en="Sunday Worship Service">Servicio de Adoración</h3>
+          <p data-es="Nuestro servicio principal: alabanza, adoración y predicación para toda la familia." data-en="Our main service: praise, worship, and preaching for the whole family.">Nuestro servicio principal: alabanza, adoración y predicación para toda la familia.</p>
+        </article>
+        <article class="service kids">
+          <p class="day" data-es="Domingos" data-en="Sundays">Domingos</p>
+          <p class="time" data-es="Escuela Dominical" data-en="Sunday School">Escuela Dominical</p>
+          <h3 data-es="Para niños" data-en="For kids">Para niños</h3>
+          <p data-es="Clases bíblicas para los más pequeños, con maestros que les enseñan el amor de Jesús." data-en="Bible classes for children, with teachers who share the love of Jesus.">Clases bíblicas para los más pequeños, con maestros que les enseñan el amor de Jesús.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="nosotros">
+    <div class="wrap">
+      <blockquote class="verse">
+        <p data-es="«El que bebiere del agua que yo le daré, no tendrá sed jamás; sino que el agua que yo le daré será en él una fuente de agua que salte para vida eterna.»" data-en="“Whoever drinks the water I give them will never thirst. Indeed, the water I give them will become in them a spring of water welling up to eternal life.”">«El que bebiere del agua que yo le daré, no tendrá sed jamás; sino que el agua que yo le daré será en él una fuente de agua que salte para vida eterna.»</p>
+        <cite data-es="Juan 4:14" data-en="John 4:14">Juan 4:14</cite>
+      </blockquote>
+      <div class="about-text">
+        <p class="eyebrow" style="color: var(--hands)" data-es="Nosotros" data-en="About Us">Nosotros</p>
+        <h2 data-es="Una fuente de vida para nuestra comunidad" data-en="A spring of life for our community">Una fuente de vida para nuestra comunidad</h2>
+        <p data-es="Somos una iglesia cristiana en Las Cruces, Nuevo México, pastoreada por Mayra y Louie Rey. Creemos que Jesús es el agua viva que transforma vidas, y nos reunimos para adorar a Dios, aprender de su Palabra y servir con amor a nuestras familias y vecinos." data-en="We are a Christian church in Las Cruces, New Mexico, led by Pastors Mayra and Louie Rey. We believe Jesus is the living water who transforms lives, and we gather to worship God, learn from His Word, and serve our families and neighbors with love.">Somos una iglesia cristiana en Las Cruces, Nuevo México, pastoreada por Mayra y Louie Rey. Creemos que Jesús es el agua viva que transforma vidas, y nos reunimos para adorar a Dios, aprender de su Palabra y servir con amor a nuestras familias y vecinos.</p>
+        <div class="pillars">
+          <span class="pill" data-es="Adoración" data-en="Worship">Adoración</span>
+          <span class="pill" data-es="La Palabra" data-en="The Word">La Palabra</span>
+          <span class="pill" data-es="Familia" data-en="Family">Familia</span>
+          <span class="pill" data-es="Servicio" data-en="Service">Servicio</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="visitanos">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-es="Visítanos" data-en="Visit Us">Visítanos</p>
+        <h2 data-es="Te esperamos" data-en="We'd love to see you">Te esperamos</h2>
+      </div>
+      <div class="visit-grid">
+        <div class="info">
+          <p class="label" data-es="Dirección" data-en="Address">Dirección</p>
+          <p class="value">1530 Arizona St.<br>Las Cruces, NM 88001</p>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=1530+Arizona+St+Las+Cruces+NM+88001" target="_blank" rel="noopener" data-es="Abrir en Google Maps →" data-en="Open in Google Maps →">Abrir en Google Maps →</a>
+        </div>
+        <div class="info">
+          <p class="label" data-es="Pastores" data-en="Pastors">Pastores</p>
+          <p class="value">Mayra y Louie Rey</p>
+          <p class="note" data-es="Acércate a saludarlos después del servicio. Con gusto oran contigo." data-en="Come say hello after the service. They'd be glad to pray with you.">Acércate a saludarlos después del servicio. Con gusto oran contigo.</p>
+        </div>
+        <div class="welcome">
+          <div>
+            <h3 data-es="¿Primera vez? ¡Bienvenido!" data-en="First time? Welcome!">¿Primera vez? ¡Bienvenido!</h3>
+            <p data-es="Servicios en español con un corazón abierto para todos. Llega unos minutos antes y te ayudaremos a encontrar tu lugar." data-en="Services with an open heart for everyone. Arrive a few minutes early and we'll help you find your seat.">Servicios en español con un corazón abierto para todos. Llega unos minutos antes y te ayudaremos a encontrar tu lugar.</p>
+          </div>
+          <a class="btn btn-red" href="#horarios" data-es="Domingo 11:00 AM" data-en="Sunday 11:00 AM">Domingo 11:00 AM</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong>Iglesia Fuente de Vida</strong>
+    <span>1530 Arizona St. · Las Cruces, NM 88001</span>
+    <span data-es="Martes 7:00 PM · Domingos 11:00 AM" data-en="Tuesdays 7:00 PM · Sundays 11:00 AM">Martes 7:00 PM · Domingos 11:00 AM</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var buttons = document.querySelectorAll('.lang button');
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-' + lang + ']').forEach(function (el) {
+      el.textContent = el.getAttribute('data-' + lang);
+    });
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
+    try { localStorage.setItem('ifv-lang', lang); } catch (e) {}
+  }
+  buttons.forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang); }); });
+  var saved = null;
+  try { saved = localStorage.getItem('ifv-lang'); } catch (e) {}
+  setLang(saved === 'en' ? 'en' : 'es');
+})();
+</script>
+</body>
+</html>

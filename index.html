@@ -100,6 +100,21 @@ section { padding-block: 72px; }
 .service.kids { background: var(--tint); border-color: transparent; }
 .service.kids .time { font-size: 30px; line-height: 1.15; }
 
+/* Events */
+.events-section { padding-top: 0; }
+.events { display: flex; flex-direction: column; gap: 14px; }
+.event { display: grid; grid-template-columns: 84px 1fr; gap: 20px; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
+.event .date { display: flex; flex-direction: column; align-items: center; justify-content: center; aspect-ratio: 1; border-radius: 14px; background: var(--hands); color: var(--hands-ink); font-family: var(--f-display); line-height: 1; }
+.event .date .m { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.event .date .d { font-size: 34px; font-weight: 700; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.event .body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.event .when { font: 700 13px var(--f-display); letter-spacing: .12em; text-transform: uppercase; color: var(--water); }
+.event h3 { font-size: 22px; }
+.event p { color: var(--muted); font-size: 16px; }
+.events-empty { background: var(--tint); border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 6px; }
+.events-empty h3 { font-size: 22px; }
+.events-empty p { color: var(--muted); }
+
 /* About */
 .about { background: var(--surface); border-block: 1px solid var(--line); }
 .about .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
@@ -149,6 +164,7 @@ footer strong { font-family: var(--f-display); letter-spacing: .08em; text-trans
     <a class="brand" href="#inicio"><img src="logo.png" alt=""><span>Fuente de Vida</span></a>
     <nav class="links" aria-label="Principal">
       <a href="#horarios" data-es="Horarios" data-en="Service Times">Horarios</a>
+      <a href="#eventos" data-es="Eventos" data-en="Events">Eventos</a>
       <a href="#nosotros" data-es="Nosotros" data-en="About Us">Nosotros</a>
       <a href="#visitanos" data-es="Visítanos" data-en="Visit Us">Visítanos</a>
     </nav>
@@ -201,6 +217,21 @@ footer strong { font-family: var(--f-display); letter-spacing: .08em; text-trans
           <h3 data-es="Para niños" data-en="For kids">Para niños</h3>
           <p data-es="Clases bíblicas para los más pequeños, con maestros que les enseñan el amor de Jesús." data-en="Bible classes for children, with teachers who share the love of Jesus.">Clases bíblicas para los más pequeños, con maestros que les enseñan el amor de Jesús.</p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="events-section" id="eventos">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-es="Eventos" data-en="Events">Eventos</p>
+        <h2 data-es="Próximos eventos" data-en="Upcoming events">Próximos eventos</h2>
+        <p data-es="Actividades especiales de nuestra iglesia. ¡Todos están invitados!" data-en="Special activities at our church. Everyone is invited!">Actividades especiales de nuestra iglesia. ¡Todos están invitados!</p>
+      </div>
+      <div class="events" id="events-list"></div>
+      <div class="events-empty" id="events-empty" hidden>
+        <h3 data-es="Pronto anunciaremos nuevos eventos" data-en="New events coming soon">Pronto anunciaremos nuevos eventos</h3>
+        <p data-es="Mientras tanto, te esperamos los martes a las 7:00 PM y los domingos a las 11:00 AM." data-en="In the meantime, join us Tuesdays at 7:00 PM and Sundays at 11:00 AM.">Mientras tanto, te esperamos los martes a las 7:00 PM y los domingos a las 11:00 AM.</p>
       </div>
     </div>
   </section>
@@ -263,10 +294,51 @@ footer strong { font-family: var(--f-display); letter-spacing: .08em; text-trans
 </footer>
 
 <script>
+/* EVENTOS: agrega cada evento aquí. Los eventos pasados se ocultan solos.
+   Ejemplo:
+   { date: "2026-12-20", time: "6:00 PM",
+     es: { title: "Cantata de Navidad", desc: "..." },
+     en: { title: "Christmas Cantata", desc: "..." } },
+*/
+var EVENTS = [
+];
+
 (function () {
   var buttons = document.querySelectorAll('.lang button');
+  var MONTHS = {
+    es: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
+    en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  };
+  function renderEvents(lang) {
+    var list = document.getElementById('events-list');
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var upcoming = EVENTS.map(function (ev) {
+      var p = ev.date.split('-');
+      return { ev: ev, d: new Date(+p[0], +p[1] - 1, +p[2]) };
+    }).filter(function (x) { return x.d >= today; })
+      .sort(function (a, b) { return a.d - b.d; });
+    list.innerHTML = '';
+    upcoming.forEach(function (x) {
+      var t = x.ev[lang] || x.ev.es;
+      var weekday = x.d.toLocaleDateString(lang === 'es' ? 'es-MX' : 'en-US', { weekday: 'long' });
+      var card = document.createElement('article');
+      card.className = 'event';
+      card.innerHTML = '<div class="date"><span class="m"></span><span class="d"></span></div>' +
+        '<div class="body"><p class="when"></p><h3></h3><p class="desc"></p></div>';
+      card.querySelector('.m').textContent = MONTHS[lang][x.d.getMonth()];
+      card.querySelector('.d').textContent = x.d.getDate();
+      card.querySelector('.when').textContent = weekday + (x.ev.time ? ' · ' + x.ev.time : '');
+      card.querySelector('h3').textContent = t.title;
+      card.querySelector('.desc').textContent = t.desc || '';
+      list.appendChild(card);
+    });
+    list.hidden = upcoming.length === 0;
+    document.getElementById('events-empty').hidden = upcoming.length > 0;
+  }
   function setLang(lang) {
     document.documentElement.lang = lang;
+    renderEvents(lang);
     document.querySelectorAll('[data-' + lang + ']').forEach(function (el) {
       el.textContent = el.getAttribute('data-' + lang);
     });

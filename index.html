@@ -201,6 +201,24 @@ section { padding-block: 84px; position: relative; }
 .pill:nth-child(3) i { background: var(--sky); }
 .pill:nth-child(4) i { background: var(--deep); }
 
+/* Gallery */
+.gallery-section { padding-top: 120px; }
+.gallery { display: grid; grid-template-columns: 1.6fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; height: clamp(380px, 46vw, 560px); }
+.shot { position: relative; margin: 0; overflow: hidden; border-radius: 22px; background: var(--tint); cursor: zoom-in; min-width: 0; min-height: 0; border: 0; padding: 0; display: block; width: 100%; height: 100%; font: inherit; text-align: left; }
+.shot.main { grid-row: 1 / 3; }
+.shot.board { background: #161616; }
+.shot.board img { object-fit: contain; padding-bottom: 28px; }
+.shot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
+.shot:hover img { transform: scale(1.04); }
+.shot .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 20px 16px; background: linear-gradient(180deg, transparent, rgba(4, 23, 38, .78)); color: #fff; display: flex; flex-direction: column; gap: 2px; }
+.shot .cap b { font: 700 19px var(--f-display); letter-spacing: .02em; }
+.shot .cap span { font-size: 14px; opacity: .85; }
+.lightbox { border: 0; padding: 0; background: transparent; max-width: min(1200px, 94vw); max-height: 90vh; }
+.lightbox::backdrop { background: rgba(4, 18, 30, .88); }
+.lightbox img { display: block; max-width: 100%; max-height: 82vh; border-radius: 14px; }
+.lightbox p { color: #fff; text-align: center; margin-top: 12px; font: 600 16px var(--f-display); letter-spacing: .04em; }
+.lightbox button { position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); color: #0c3f66; font: 700 22px/1 var(--f-display); cursor: pointer; }
+
 /* Visit */
 .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .info { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
@@ -279,6 +297,12 @@ footer .fsoc svg { width: 18px; height: 18px; }
   .schedule { grid-template-columns: 1fr; }
   .about .wrap, .visit-grid, .prayer .wrap { grid-template-columns: 1fr; gap: 32px; }
   .week-card { grid-template-columns: 1fr; gap: 14px; }
+  .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; height: auto; }
+  .shot.main { grid-row: auto; grid-column: 1 / -1; aspect-ratio: 2 / 1; }
+  .shot:not(.main) { aspect-ratio: 4 / 3; }
+  .shot .cap { padding: 30px 14px 12px; }
+  .shot .cap b { font-size: 16px; }
+  .shot .cap span { display: none; }
   .fab span { display: none; }
   .fab { padding: 15px; }
 }
@@ -468,7 +492,37 @@ footer .fsoc svg { width: 18px; height: 18px; }
     <div class="edge bottom" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 60 C 360 0 1080 0 1440 60 Z"/></svg></div>
   </section>
 
-  <section id="visitanos" style="padding-top: 120px">
+  <section class="gallery-section" id="galeria">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-es="Nuestra casa" data-en="Our home">Nuestra casa</p>
+        <h2 data-es="Un lugar para encontrarte con Dios" data-en="A place to meet with God">Un lugar para encontrarte con Dios</h2>
+        <p data-es="Así se ve nuestro santuario. Hay un lugar para ti." data-en="This is our sanctuary. There's a seat for you.">Así se ve nuestro santuario. Hay un lugar para ti.</p>
+      </div>
+      <div class="gallery">
+        <button type="button" class="shot main">
+          <img src="fotos/santuario.jpg" width="1800" height="900" loading="lazy" alt="Santuario de la Iglesia Fuente de Vida con sillas azules frente al altar">
+          <span class="cap"><b data-es="Nuestro santuario" data-en="Our sanctuary">Nuestro santuario</b><span data-es="1530 Arizona St., Las Cruces" data-en="1530 Arizona St., Las Cruces">1530 Arizona St., Las Cruces</span></span>
+        </button>
+        <button type="button" class="shot">
+          <img src="fotos/alabanza.jpg" width="1400" height="525" loading="lazy" alt="Altar con batería, guitarra, teclado y púlpito">
+          <span class="cap"><b data-es="Alabanza y adoración" data-en="Praise and worship">Alabanza y adoración</b><span data-es="Donde la música sirve a Dios" data-en="Where music serves God">Donde la música sirve a Dios</span></span>
+        </button>
+        <button type="button" class="shot board">
+          <img src="fotos/bienvenidos.jpg" width="1400" height="693" loading="lazy" alt="Mural de Bienvenidos con versículos enmarcados">
+          <span class="cap"><b data-es="¡Bienvenidos!" data-en="Welcome!">¡Bienvenidos!</b><span data-es="Te recibimos con los brazos abiertos" data-en="We welcome you with open arms">Te recibimos con los brazos abiertos</span></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <dialog class="lightbox" id="lightbox">
+    <img id="lb-img" src="fotos/santuario.jpg" alt="">
+    <p id="lb-cap"></p>
+    <button type="button" id="lb-close" aria-label="Cerrar">×</button>
+  </dialog>
+
+  <section id="visitanos">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow" data-es="Visítanos" data-en="Visit Us">Visítanos</p>
@@ -798,6 +852,19 @@ var SERVICES = [
     try { navigator.clipboard.writeText(txt).then(done, fallback); } catch (e) { fallback(); }
   });
   applyLinks();
+
+  var lb = document.getElementById('lightbox');
+  document.querySelectorAll('.shot').forEach(function (shot) {
+    shot.addEventListener('click', function () {
+      var img = shot.querySelector('img');
+      document.getElementById('lb-img').src = img.src;
+      document.getElementById('lb-img').alt = img.alt;
+      document.getElementById('lb-cap').textContent = shot.querySelector('.cap b').textContent;
+      if (lb.showModal) lb.showModal();
+    });
+  });
+  document.getElementById('lb-close').addEventListener('click', function () { lb.close(); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
 
   function setLang(lang) {
     document.documentElement.lang = lang;
